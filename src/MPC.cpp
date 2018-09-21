@@ -61,6 +61,10 @@ public:
 		fg[0] = 0;
 
 		// The part of the cost based on the reference state.
+
+		// At 100 the cost was in in the thousands
+		// At 1000 the cost was < 1000
+		// At 2000 the cost was < 500
 		for (int t = 0; t < N; t++) {
 			fg[0] += 2000 * CppAD::pow(vars[cte_start + t], 2);
 			fg[0] += 2000 * CppAD::pow(vars[epsi_start + t], 2);
@@ -68,16 +72,24 @@ public:
 		}
 
 		// Minimize the use of actuators.
+
+		// At 100 the cost was < 1000
+		// At 2000 the cost was < 200
 		for (int t = 0; t < N - 1; t++) {
 			fg[0] += 2000 * CppAD::pow(vars[delta_start + t], 2);
 			fg[0] += 10 * CppAD::pow(vars[a_start + t], 2);
 		}
 
 		// Minimize the value gap between sequential actuations.
+
+		// At 100 there was no cost change
+		// At 1000 there was no cost change
+		// At 10000 the cost < 200
 		for (int t = 0; t < N - 2; t++) {
 			fg[0] += 10000 * CppAD::pow(vars[delta_start + t + 1] - vars[delta_start + t], 2);
 			fg[0] += 10000 * CppAD::pow(vars[a_start + t + 1] - vars[a_start + t], 2);
 		}
+
 
 		//
 		// Setup Constraints
