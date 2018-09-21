@@ -14,11 +14,11 @@ The model I used was the common bicycle motion model, but expressed as a dynamic
 
 <img src="output/model.png" width="480" alt="Combined Image" />
 
-That includes 6 states variables and 2 actuator ouutputs, throttle and steering.
+That includes 6 states variables and 2 actuator outputs: throttle and steering.
 
 # Processing
 
-We take the lesson steps and provided waypoints (i.e. expected path), I use the current state and fit a polynominal and create a requested path/line. Note I did this in the vehicle/inertia reference frame. I then run the MPC controller to generate a optimal path from the current state. From that I calculate the actuator outputs and account for latency.
+Using the lesson steps and the provided waypoints (i.e. expected path) from the simulator, I use the current state and fit a polynominal and create a requested path/line. Note I did this in the vehicle/inertia reference frame. I then run the MPC controller to generate a optimal path from the current state. From that I calculate the actuator outputs and account for latency.
 
 ## Tuning
 
@@ -26,7 +26,8 @@ In tuning the MPC, I tried various steps (N) and time intervals (dt). I started 
 
 ## Reflection
 
-I was looking to evaluate the provided waypoints vs the calculated MPC trajectory, which then determined the steering output.
+A goal of this project was to evaluate the provided waypoints vs the calculated MPC trajectory, which was used to calculate the steering output.
+
 <img src="output/path_vs_mpc_solve.png" width="480" alt="Combined Image" />
 
 Instead of the PID controller, which created control jerky-ness as the car tried to steering back onto the waypoint trajectory, the MPC controller provided a much smoother transistion of steering commands to keep the car on the waypoint trajectory.
