@@ -1,6 +1,44 @@
 # CarND-Controls-MPC
 Self-Driving Car Engineer Nanodegree Program
 
+## Summary
+In this project we revisit the lake race track from the Behavioral Cloning Project. I implement the Model Predictive Control to drive the car around the track. 
+
+This time however you're not given the cross track error, you'll have to calculate that yourself! Additionally, there's a 100 millisecond latency between actuations commands on top of the connection latency.
+
+The simulator will provide you the model state, cross track error (CTE) and the velocity (mph) in order to compute the appropriate steering angle.
+
+## Model
+
+The model I used was the common bicycle motion model, but expressed as a dynamic model (via center of mass) with associated kinematics:
+<img src="output/model.png" width="480" alt="Combined Image" />
+
+That includes 6 states variables and 2 actuator ouutputs, throttle and steering.
+
+# Processing
+
+We take the lesson steps and provided waypoints (i.e. expected path), I use the current state and fit a polynominal and create a requested path/line. Note I did this in the vehicle/inertia reference frame. I then run the MPC controller to generate a optimal path from the current state. From that I calculate the actuator outputs and account for latency.
+
+## Tuning
+
+In tuning the MPC, I tried various steps (N) and time intervals (dt). I started with the lesson notes of N=25 and dt=0.05 and the result was a trajectory that the steering lagged too much. I ended up with N=10 and dt=0.1 to maintain steering smoothest and quick calculation.
+
+## Reflection
+
+I was looking to evaluate the provided waypoints vs the calculated MPC trajectory, which then determined the steering output.
+<img src="output/path_vs_mpc_solve.png" width="480" alt="Combined Image" />
+
+Instead of the PID controller, which created control jerky-ness as the car tried to steering back onto the waypoint trajectory, the MPC controller provided a much smoother transistion of steering commands to keep the car on the waypoint trajectory.
+
+[![Output](output/run.png)](https://youtu.be/4u69CFZbF5c "Click to Play Video")
+
+Looking at zero cost, the steering was a bit high:
+<img src="output/steering-no_cost.png" width="640" alt="Combined Image" />
+
+As recommended in the lesson, I added some cost gains, and was able to reduce the steering effort, maybe by 10%--of course the sharp turns were the same (cost had little effect):
+<img src="output/steering-cost.png" width="640" alt="Combined Image" />
+
+
 ---
 
 ## Dependencies
