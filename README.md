@@ -17,6 +17,7 @@ The model I used was the common bicycle motion model, but expressed as a dynamic
 <img src="output/model.png" width="480" alt="Combined Image" />
 (Credit: Udacity)
 
+
 That includes 6 states variables and 2 actuator outputs: throttle and steering.
 
 # Processing
@@ -33,6 +34,7 @@ A goal of this project was to evaluate the provided waypoints vs the calculated 
 
 <img src="output/path_vs_mpc_solve.png" width="480" alt="Combined Image" />
 (Credit: Udacity)
+
 
 Instead of the PID controller, which created control jerky-ness as the car tried to steering back onto the waypoint trajectory, the MPC controller provided a much smoother transistion of steering commands to keep the car on the waypoint trajectory.
 
