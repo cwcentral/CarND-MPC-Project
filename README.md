@@ -20,7 +20,7 @@ The model I used was the common bicycle motion model, but expressed as a dynamic
 
 That includes 6 states variables and 2 actuator outputs: throttle and steering.
 
-# Processing
+## Processing
 
 Using the lesson steps and the provided waypoints (i.e. expected path) from the simulator, I use the current state and fit a polynominal and create a requested path/line. Note I did this in the vehicle/inertia reference frame. I then run the MPC controller to generate a optimal path from the current state. From that I calculate the actuator outputs and account for latency.
 
