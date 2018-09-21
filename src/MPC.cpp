@@ -54,7 +54,10 @@ public:
 		// NOTE: You'll probably go back and forth between this function and
 		// the Solver function below.
 
+		////////////////////////////////////////////////////////////
 		// See LESSON 9 and Quizzes MPC.cpp
+		////////////////////////////////////////////////////////////
+
 		fg[0] = 0;
 
 		// The part of the cost based on the reference state.
@@ -115,8 +118,6 @@ public:
 			AD<double> delta0 = vars[delta_start + t - 1];
 			AD<double> a0 = vars[a_start + t - 1];
 
-//	      AD<double> f0 = coeffs[0] + coeffs[1] * x0;
-//	      AD<double> psides0 = CppAD::atan(coeffs[1]);
 			AD<double> f0 = coeffs[0] + coeffs[1] * x0 + coeffs[2] * CppAD::pow(x0, 2) + coeffs[3] * CppAD::pow(x0, 3);
 			AD<double> psides0 = CppAD::atan(coeffs[1] + (2 * coeffs[2] * x0) + (3 * coeffs[3] * CppAD::pow(x0, 2)));
 
@@ -178,6 +179,10 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
 	for (int i = 0; i < n_vars; i++) {
 		vars[i] = 0;
 	}
+
+	////////////////////////////////////////////////////////////
+	// See Quizzes
+	////////////////////////////////////////////////////////////
 
 	vars[x_start] = x;
 	vars[y_start] = y;
