@@ -8,6 +8,8 @@ This time however you're not given the cross track error, you'll have to calcula
 
 The simulator will provide you the model state, cross track error (CTE) and the velocity (mph) in order to compute the appropriate steering angle.
 
+### The project rubric can be [found here](https://review.udacity.com/#!/rubrics/896/view)
+
 ## Model
 
 The model I used was the common bicycle motion model, but expressed as a dynamic model (via center of mass) with associated kinematics:
@@ -23,7 +25,7 @@ Using the lesson steps and the provided waypoints (i.e. expected path) from the 
 
 ## Tuning
 
-In tuning the MPC, I tried various steps (N) and time intervals (dt). I started with the lesson notes of N=25 and dt=0.05 and the result was a trajectory that the steering lagged too much. I ended up with N=10 and dt=0.1 to maintain steering smoothest and quick calculation.
+In tuning the MPC, I tried various steps (N) and time intervals (dt). I started with the lesson notes of N=25 and dt=0.05 and the result was a trajectory that the steering lagged too much. I ended up with N=10 and dt=0.1 to maintain steering smoothest and quick calculation. It was good to have dt=0.1s since it was stated that the latency was 100ms (so intervals were equal to the latency).
 
 ## Reflection
 
@@ -34,7 +36,7 @@ A goal of this project was to evaluate the provided waypoints vs the calculated 
 
 Instead of the PID controller, which created control jerky-ness as the car tried to steering back onto the waypoint trajectory, the MPC controller provided a much smoother transistion of steering commands to keep the car on the waypoint trajectory.
 
-[![Output](output/run.png)](https://youtu.be/4u69CFZbF5c "Click to Play Video")
+[![Output](output/run.png)](https://youtu.be/nT73ys7jq6k "Click to Play Video")
 
 Looking at zero cost, the steering was a bit high:
 
