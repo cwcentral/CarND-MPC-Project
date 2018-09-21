@@ -13,6 +13,7 @@ The simulator will provide you the model state, cross track error (CTE) and the 
 The model I used was the common bicycle motion model, but expressed as a dynamic model (via center of mass) with associated kinematics:
 
 <img src="output/model.png" width="480" alt="Combined Image" />
+(Credit: Udacity)
 
 That includes 6 states variables and 2 actuator outputs: throttle and steering.
 
@@ -29,6 +30,7 @@ In tuning the MPC, I tried various steps (N) and time intervals (dt). I started 
 A goal of this project was to evaluate the provided waypoints vs the calculated MPC trajectory, which was used to calculate the steering output.
 
 <img src="output/path_vs_mpc_solve.png" width="480" alt="Combined Image" />
+(Credit: Udacity)
 
 Instead of the PID controller, which created control jerky-ness as the car tried to steering back onto the waypoint trajectory, the MPC controller provided a much smoother transistion of steering commands to keep the car on the waypoint trajectory.
 
