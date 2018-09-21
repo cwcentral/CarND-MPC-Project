@@ -11,6 +11,7 @@ The simulator will provide you the model state, cross track error (CTE) and the 
 ## Model
 
 The model I used was the common bicycle motion model, but expressed as a dynamic model (via center of mass) with associated kinematics:
+
 <img src="output/model.png" width="480" alt="Combined Image" />
 
 That includes 6 states variables and 2 actuator ouutputs, throttle and steering.
@@ -33,9 +34,11 @@ Instead of the PID controller, which created control jerky-ness as the car tried
 [![Output](output/run.png)](https://youtu.be/4u69CFZbF5c "Click to Play Video")
 
 Looking at zero cost, the steering was a bit high:
+
 <img src="output/steering-no_cost.png" width="640" alt="Combined Image" />
 
 As recommended in the lesson, I added some cost gains, and was able to reduce the steering effort, maybe by 10%--of course the sharp turns were the same (cost had little effect):
+
 <img src="output/steering-cost.png" width="640" alt="Combined Image" />
 
 
